@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/blog/css/register.css">
+{% endblock %}
+
+{% block script %}
+    <script rel="script" src="/static/blog/js/auth/register.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+
+        <div class="col-md-4">
+            <form class="form-signin" method="post" id="register_form" style="padding-left: 50px; padding-right: 50px">
+                <div class="text-center mb-4">
+                    <img class="mb-4" src="/static/blog/image/login.png" alt="" width="72" height="72" style="margin-top: 50px">
+                    <h1 class="h3 mb-3 font-weight-normal" style="margin: 10px">Blog注册</h1>
+                </div>
+
+                <hr>
+
+                <div class="form-label-group">
+                    <label for="username">Username</label>
+                    {# 注意：这里的input需要指定name熟悉，否则后端无法通过from获取参数 #}
+                    <input type="text" id="username" class="form-control" name="username" placeholder="username" required autofocus>
+                </div>
+
+                <br>
+
+                <div class="form-label-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+                </div>
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me" id="ck_remember"> Remember me
+                    </label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" id="rg_submit">Register</button>
+
+                <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
+
+            </form>
+
+            <hr>
+
+            <div style="text-align: center">
+                <label>Already have an account?<a href="/">Sign in</a></label>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4">
+
+        </div>
+
+    </div>
+{% endblock %}
+
+

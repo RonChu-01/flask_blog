@@ -1,13 +1,18 @@
 from flask import Flask
 from flask import render_template
-from views.login import login
+from views.auth import auth
 
 app = Flask(__name__)
-app.register_blueprint(login, url_prefix='/login')
+app.register_blueprint(auth, url_prefix='/auth')
 
 
 @app.route('/')
-def hello_world():
+def sign():
+    return render_template('blog/auth/login.html')
+
+
+@app.route('/index')
+def index():
     return render_template('index.html')
 
 
