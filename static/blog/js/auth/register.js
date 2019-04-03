@@ -29,9 +29,11 @@ function ajaxPost(){
                 // 请求成功，跳转至首页
                 if (data['status'] == 0){
                     window.location.href = host;
+                    // window.location.href = host + /index;
 
                 // 用户名或密码错误，停留当前页面
-                } else if (data['status'] == 400){
+                }
+                else if (data['status'] == 400){
                     alert('用户名或密码错误，请联系管理员！');
 
                 } else {
@@ -41,8 +43,7 @@ function ajaxPost(){
             },
             // 失败回调
             error:function(e){
-                console.log(form);
-                    alert("error");
+                alert("error");
             }
         })
 }

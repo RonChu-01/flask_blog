@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
+"""
+Mysql 连接池
+"""
 import pymysql, os, configparser
 from pymysql.cursors import DictCursor
 from DBUtils.PooledDB import PooledDB
@@ -210,9 +213,9 @@ if __name__ == '__main__':
 
     mysql = MyPymysqlPool("notdbMysql")
 
-    sqlAll = "SELECT * FROM guest.sign_guest"
-    result = mysql.getAll(sqlAll)
-    print(result)
+    # sqlAll = "SELECT * FROM guest.sign_guest"
+    # result = mysql.getAll(sqlAll)
+    # print(result)
 
     # sqlAll = "select * from myTest.aa;"
     # result = mysql.getMany(sqlAll, 2)
@@ -221,7 +224,13 @@ if __name__ == '__main__':
     # result = mysql.getOne(sqlAll)
     # print(result)
 
-    # mysql.insert("insert into myTest.aa set a=%s", (1))
+    # data = ("'" + tNumDet + "'", "'" + tDateDet + "'", "'" + tEndDateDet + "'", "'" + tOrgDet + "'", "'" + tLavelDet + "'")
+    # data = (repr(tNumDet), repr(tDateDet), repr(tEndDateDet), repr(tOrgDet), repr(tLavelDet))
+    # sql = "INSERT INTO flask_blog.auth_user(password, username) VALUES (%s, %s)" % ('chuy5945', 'test')
+    # sql = 'INSERT INTO flask_blog.auth_user(username, PASSWORD) VALUES ({0}, {1})'.format("'" + 'test' +"'", "'"+'chuy5945'+"'",)
+    sql = 'INSERT INTO flask_blog.auth_user(username, PASSWORD) VALUES ({0}, {1})'.format(repr('tom'), repr('chuy5945'))
+    result = mysql.insert(sql)
+    print(result)
 
     # 释放资源
     mysql.dispose()

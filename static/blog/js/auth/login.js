@@ -42,50 +42,50 @@
 // }
 
 //提交ajax表单
-function ajaxForm(){
-        //提交表单，可以通过serialize（）方法获取form表单数据
-        // var datas = {};
-        // var username = $('#username').val();
-        // var password = $('#inputPassword').val();
-        // var is_remember = false;
-        // datas['username'] = username;
-        // datas['password'] = password;
-        // datas['is_remember'] = is_remember;
-
-        var form = $('#login_form').serialize();
-        $.ajax({
-            url:host + "/auth/api/v1/login",
-            type:"post",
-            data:form,
-            dataType: 'json',
-            processData:false,
-            contentType:false,
-            success:function(data){
-                console.log(data);
-                console.log(data['status']);
-
-                if (data['status'] == 0){
-                    console.log(data['status']);
-                    window.location.href = host + '/index';
-
-                } else if (data['status'] == 400){
-                    console.log(data['status']);
-                    window.location.href = host + '/index';
-                    alert('用户名或密码错误，请联系管理员！');
-
-                } else {
-                    console.log(data['status']);
-                    window.location.href = host + '/index';
-                    alert('系统错误请联系管理员！');
-                }
-
-            },
-            error:function(e){
-                console.log(form);
-                    alert("error");
-            }
-        })
-}
+// function ajaxForm(){
+//         //提交表单，可以通过serialize（）方法获取form表单数据
+//         // var datas = {};
+//         // var username = $('#username').val();
+//         // var password = $('#inputPassword').val();
+//         // var is_remember = false;
+//         // datas['username'] = username;
+//         // datas['password'] = password;
+//         // datas['is_remember'] = is_remember;
+//
+//         var form = $('#login_form').serialize();
+//         $.ajax({
+//             url:host + "/auth/api/v1/login",
+//             type:"post",
+//             data:form,
+//             dataType: 'json',
+//             processData:false,
+//             contentType:false,
+//             success:function(data){
+//                 console.log(data);
+//                 console.log(data['status']);
+//
+//                 if (data['status'] == 0){
+//                     console.log(data['status']);
+//                     window.location.href = host + '/index';
+//
+//                 } else if (data['status'] == 400){
+//                     console.log(data['status']);
+//                     window.location.href = host + '/index';
+//                     alert('用户名或密码错误，请联系管理员！');
+//
+//                 } else {
+//                     console.log(data['status']);
+//                     window.location.href = host + '/index';
+//                     alert('系统错误请联系管理员！');
+//                 }
+//
+//             },
+//             error:function(e){
+//                 console.log(form);
+//                     alert("error");
+//             }
+//         })
+// }
 
 //提交POST表单数据，以json格式提交
 function ajaxPost(){
@@ -115,15 +115,27 @@ function ajaxPost(){
                 console.log(data);
                 console.log(data['status']);
 
+                // 登录状态处理，不同状态码对应不同登录状态
+                // 0 ----> 登录成功
+                // 2 ----> 用户名或密码错误
+
                 // 请求成功，跳转至首页
                 if (data['status'] == 0){
                     window.location.href = host + '/index';
 
-                // 用户名或密码错误，停留当前页面
-                } else if (data['status'] == 400){
+                }
+
+                // 用户名或密码错误
+                else if(data['status'] == 2){
+                    alert('用户名或密码错误!');
+                }
+
+                else if (data['status'] == 400){
                     alert('用户名或密码错误，请联系管理员！');
 
-                } else {
+                }
+
+                else {
                     alert('系统错误请联系管理员！');
                 }
 
