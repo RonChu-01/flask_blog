@@ -5,6 +5,7 @@ from pymysql.cursors import DictCursor
 from DBUtils.PooledDB import PooledDB
 
 
+# mysql配置文件
 class Config(object):
     """
     # Config().get_content("user_information")
@@ -36,6 +37,7 @@ class Config(object):
         return result
 
 
+# mysql 连接池
 class BasePymysqlPool(object):
     def __init__(self, host, port, user, password, db_name=None):
         self.db_host = host
@@ -208,16 +210,16 @@ if __name__ == '__main__':
 
     mysql = MyPymysqlPool("notdbMysql")
 
-    sqlAll = "select * from myTest.aa;"
+    sqlAll = "SELECT * FROM guest.sign_guest"
     result = mysql.getAll(sqlAll)
     print(result)
 
-    sqlAll = "select * from myTest.aa;"
-    result = mysql.getMany(sqlAll, 2)
-    print(result)
-
-    result = mysql.getOne(sqlAll)
-    print(result)
+    # sqlAll = "select * from myTest.aa;"
+    # result = mysql.getMany(sqlAll, 2)
+    # print(result)
+    #
+    # result = mysql.getOne(sqlAll)
+    # print(result)
 
     # mysql.insert("insert into myTest.aa set a=%s", (1))
 
